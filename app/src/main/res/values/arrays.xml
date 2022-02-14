@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="notes">
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+        <item>Воскресенье</item>
+    </string-array>
+
+
+<string-array name="descriptions">
+
+    <item>Здал пркатическое задания дз шестого урока</item>
+    <item>Проанилизировать дз седьмого урока</item>
+    <item>Разгрузечный день погулять в парке</item>
+    <item>Новая тема курса Андройд платформа</item>
+    <item>Изучить материалы от новой темы</item>
+    <item>Сдать все долги по дз курса</item>
+    <item>День просмотра фильма чтение книг различные статьи по темам it индустрия</item>
+
+</string-array>
+
+
+
+
+
+</resources>

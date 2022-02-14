@@ -9,13 +9,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class NotesFragment extends Fragment {
 
-
-    public static NotesFragment newInstance(String param1, String param2) {
+    public static NotesFragment newInstance() {
         NotesFragment fragment = new NotesFragment();
-        Bundle args = new Bundle();
         return fragment;
     }
 
@@ -29,6 +29,15 @@ public class NotesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String[] notes = getResources().getStringArray(R.array.notes);
+        for (int i = 0; i < notes.length; i ++){
+            String noteName = notes[i];
+            TextView textView = new TextView(getContext());
+            textView.setTextSize(30f);
+            textView.setText(noteName);
+            ((LinearLayout) view).addView(textView);
+        }
+
 
     }
 }

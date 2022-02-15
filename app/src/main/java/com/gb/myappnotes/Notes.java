@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Notes implements Parcelable {
-    private int index;
+ private int index;
 
     public Notes(int i) {
         index = i;

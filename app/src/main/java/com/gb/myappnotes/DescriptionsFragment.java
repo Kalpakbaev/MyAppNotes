@@ -1,13 +1,10 @@
 package com.gb.myappnotes;
 
-import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.TextureView;
+import android.view.LayoutInflater;;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
+
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -40,14 +37,20 @@ public class DescriptionsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         notes = getArguments().getParcelable(ARG_NOTES);
-        String[] descriptions = getResources().getStringArray(R.array.descriptions);
-        for (int i = 0; i < descriptions.length; i++);
-        String descriptionsName = descriptions[0];
-        TextView textView = new TextView(getContext());
-        textView.setTextSize(25f);
-        textView.setText(descriptionsName);
-        ((LinearLayout) view).addView(textView);
-
-
+        String [] name = getResources().getStringArray(R.array.notes);
+        String[] text = getResources().getStringArray(R.array.descriptions);
+        String[] data = getResources().getStringArray(R.array.NoteDate);
+        TextView noteName = new TextView(getContext());
+        TextView noteDescription = new TextView(getContext());
+        TextView date = new TextView(getContext());
+        noteName.setTextSize(35f);
+        noteDescription.setTextSize(25);
+        date.setTextSize(15f);
+        noteName.setText(name[notes.getIndex()]);
+        noteDescription.setText(text[notes.getIndex()]);
+        date.setText(String.format("Дата создания:%s", data[notes.getIndex()]));
+        ((LinearLayout) view).addView(noteName);
+        ((LinearLayout) view).addView(noteDescription);
+        ((LinearLayout) view).addView(date);
     }
 }

@@ -46,9 +46,9 @@ public class DescriptionsFragment extends Fragment {
         noteName.setTextSize(35f);
         noteDescription.setTextSize(25);
         date.setTextSize(15f);
-        noteName.setText(name[notes.getIndex()]);
-        noteDescription.setText(text[notes.getIndex()]);
-        date.setText(String.format("Дата создания:%s", data[notes.getIndex()]));
+        noteName.setText(name[notes.getNumber()]);
+        noteDescription.setText(text[notes.getNumber()]);
+        date.setText(String.format("Дата создания:%s", data[notes.getNumber()]));
         ((LinearLayout) view).addView(noteName);
         ((LinearLayout) view).addView(noteDescription);
         ((LinearLayout) view).addView(date);

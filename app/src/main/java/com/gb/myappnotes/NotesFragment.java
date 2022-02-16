@@ -14,16 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class NotesFragment extends Fragment {
-    public static final String KEY = "key";
+    public static final String CURRENT_NOTES = "key";
     private Notes currentNotes;
 
 
-    public static NotesFragment newInstance() {
+    public static NotesFragment newInstance(int note) {
         NotesFragment fragment = new NotesFragment();
         return fragment;
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,19 +32,20 @@ public class NotesFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(KEY, currentNotes);
+        outState.putParcelable(CURRENT_NOTES, currentNotes);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (savedInstanceState != null) {
-            currentNotes = savedInstanceState.getParcelable(KEY);
+            currentNotes = savedInstanceState.getParcelable(CURRENT_NOTES);
         } else {
             currentNotes = new Notes(0);
         }
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            showLand();
+            currentNotes = new Notes(0);
+            showLand(currentNotes);
 
         }
 
@@ -70,7 +69,7 @@ public class NotesFragment extends Fragment {
                 public void onClick(View view) {
                     currentNotes = new Notes(finalI);
                     if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                        showLand();
+                        showLand(currentNotes);
                     } else {
                         showPort();
 
@@ -84,14 +83,14 @@ public class NotesFragment extends Fragment {
 
     }
     private void showPort() {
-        NotesFragment notesFragment = NotesFragment.newInstance();
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.notes, notesFragment).addToBackStack("1").commit();
+        NotesFragment notesFragment = NotesFragment.newInstance(R.id.note);
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.note, notesFragment).addToBackStack("1").commit();
     }
 
-    private void showLand() {
-        NotesFragment notesFragment = NotesFragment.newInstance();
+    private void showLand(Notes currentNotes) {
+        NotesFragment notesFragment = NotesFragment.newInstance(R.id.note);
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.notes, notesFragment)
+                .replace(R.id.descriptions, notesFragment)
                 .commit();
     }
 

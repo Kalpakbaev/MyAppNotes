@@ -8,18 +8,18 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState==null){
-            NotesFragment notesFragment = NotesFragment.newInstance();
-            getSupportFragmentManager().beginTransaction().replace(R.id.notes,notesFragment).commit();
-            if (getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
-                Notes defaultNotes = new Notes(R.id.descriptions);
-                DescriptionsFragment descriptionsFragment = DescriptionsFragment.newInstance(defaultNotes);
-                getSupportFragmentManager().beginTransaction().replace(R.id.descriptions,descriptionsFragment).commit();
-            }
+            NotesFragment notesFragment = NotesFragment.newInstance(R.id.note);
+            getSupportFragmentManager().beginTransaction().replace(R.id.note,notesFragment).commit();
+
+        }
+        if (getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
+            Notes defaultNotes = new Notes(0);
+            DescriptionsFragment descriptionsFragment = DescriptionsFragment.newInstance(defaultNotes);
+            getSupportFragmentManager().beginTransaction().replace(R.id.descriptions,descriptionsFragment).commit();
         }
 
     }
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Fragment backStackFragment = (Fragment) getSupportFragmentManager()
-                .findFragmentById(R.id.notes);
+                .findFragmentById(R.id.note);
         if (backStackFragment != null && backStackFragment instanceof NotesFragment) {
             onBackPressed();
         }
